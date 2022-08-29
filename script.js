@@ -5,7 +5,6 @@ function Book(title, author, pages, readStatus) {
         this.author = author;
         this.pages = pages;
         this.readStatus = readStatus;
-    
 }
 
 function addBookToLibrary(book) {
@@ -19,14 +18,12 @@ const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, false);
 
 addBookToLibrary(animalFarm);
 addBookToLibrary(eotw);
-addBookToLibrary(theHobbit)
-
+addBookToLibrary(theHobbit);
 
 console.log(myLibrary);
 
-const container = document.querySelector('#container');
-
 function createBookCard(book) {
+    const container = document.querySelector('#container');
     const bookCard = document.createElement('div');
     const title = document.createElement('p');
     const author = document.createElement('p')
@@ -72,6 +69,4 @@ function createBookCard(book) {
     container.appendChild(bookCard);
 }
 
-for (books in myLibrary) {
-    createBookCard(Book);
-}
+myLibrary.forEach(book => createBookCard(book));

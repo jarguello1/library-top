@@ -1,13 +1,30 @@
 /* --- Style ---*/
 
 body {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 0px;
     padding: 0px;
     background-color: rgb(241, 235, 227);
+    align-items: center;
 }
 
 form#bookInput {
     display: none;
+}
+
+#container {
+    display: flex;
+
+}
+
+.bookCard {    
+    display: flex;
+    height: 150px;
+    width: 180px;
+    border: 1px solid;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }

@@ -5,4 +5,9 @@ body {
     width: 100%;
     margin: 0px;
     padding: 0px;
+    background-color: rgb(241, 235, 227);
+}
+
+form#bookInput {
+    display: none;
 }

@@ -70,3 +70,20 @@ function createBookCard(book) {
 }
 
 myLibrary.forEach(book => createBookCard(book));
+
+
+function closeWindow (e) {
+    const bookForm = document.getElementById('bookInput');
+    bookForm.style.display = 'none';
+}
+
+function openWindow () {
+    const bookForm = document.getElementById('bookInput');
+    bookForm.style.display = 'block';
+}
+
+const addBook = document.getElementById('addBook');
+addBook.addEventListener('click', openWindow);
+
+const closeForm = document.getElementById('close');
+closeForm.addEventListener('click', closeWindow)

@@ -14,18 +14,22 @@
     </header>
     <button id="addBook">Add Book</button>
     <div id="container">
-        <form action="post" id="bookInput">
-            <p>Add Book</p>
-            <span id="close">&times;</span>
-            <input type="text" name="bookTitle" id="bookTitle" placeholder="title">
-            <input type="text" name="bookAuthor" id="bookAuthor" placeholder="author">
-            <input type="number" name="bookPages" id="bookPages" placeholder="pages">
-
-            <label for="isRead">Have you read it?</label>
-            <input type="radio" name="isRead" id="isRead">
-
-            <button type="submit" form="bookInput" id="submitBook">Add</button>
-        </form>
     </div>
+    <div id="modal">
+        <form action="post" id="bookInput">
+        <div class="formHeader">
+            <p>Add Book</p>
+            <p><span id="close">&times;</span></p>
+        </div>
+        <input type="text" name="bookTitle" id="bookTitle" placeholder="title">
+        <input type="text" name="bookAuthor" id="bookAuthor" placeholder="author">
+        <input type="number" name="bookPages" id="bookPages" placeholder="pages">
+
+        <label for="isRead">Have you read it?</label>
+        <input type="radio" name="isRead" id="isRead">
+
+        <button type="submit" form="bookInput" id="submitBook">Add</button>
+    </form>
+</div>
 </body>
 </html>

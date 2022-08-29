@@ -51,16 +51,29 @@ function createBookCard(book) {
     pages.classList.add('Pages');
     infoContainer.appendChild(pages);
 
+    
     if (book.isRead) {
         readStatus.textContent = 'Read'
         readStatus.style.backgroundColor = '#63da63'
       } else {
-        readStatus.textContent = 'Not read'
+        readStatus.textContent = 'Not Read'
         readStatus.style.backgroundColor = '#e04f63';
       }
+    readStatus.addEventListener('click', () => {
+        book.isRead = !book.isRead;
+        if (book.isRead) {
+            readStatus.textContent = 'Read'
+            readStatus.style.backgroundColor = '#63da63'
+          } else {
+            readStatus.textContent = 'Not Read'
+            readStatus.style.backgroundColor = '#e04f63';
+          }
+    })
     buttonContainer.appendChild(readStatus);
 
     removeBook.textContent = "Remove Book";
+    removeBook.classList.add('removeBtn')
+    removeBook.addEventListener('click', deleteBook)
     buttonContainer.appendChild(removeBook);
 
     bookCard.appendChild(infoContainer);
@@ -73,11 +86,15 @@ myLibrary.forEach(book => createBookCard(book));
 
 
 function closeWindow (e) {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
     const bookForm = document.getElementById('bookInput');
     bookForm.style.display = 'none';
 }
 
 function openWindow () {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'block';
     const bookForm = document.getElementById('bookInput');
     bookForm.style.display = 'block';
 }
@@ -87,3 +104,8 @@ addBook.addEventListener('click', openWindow);
 
 const closeForm = document.getElementById('close');
 closeForm.addEventListener('click', closeWindow)
+
+function deleteBook(e) {
+
+}
+

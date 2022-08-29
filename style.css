@@ -12,6 +12,7 @@ body {
 
 #container {
     display: flex;
+    gap: 75px;
 
 }
 

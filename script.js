@@ -47,33 +47,36 @@ function createBookCard(book) {
     author.classList.add('Author');
     infoContainer.appendChild(author);
 
-    pages.textContent = book.pages;
+    pages.textContent = `${book.pages} pg`;
     pages.classList.add('Pages');
     infoContainer.appendChild(pages);
 
     
     if (book.isRead) {
-        readStatus.textContent = 'Read'
-        readStatus.style.backgroundColor = '#63da63'
+        readStatus.textContent = 'Read';
+        readStatus.style.backgroundColor = '#63da63';
       } else {
-        readStatus.textContent = 'Not Read'
+        readStatus.textContent = 'Not Read';
         readStatus.style.backgroundColor = '#e04f63';
       }
     readStatus.addEventListener('click', () => {
         book.isRead = !book.isRead;
         if (book.isRead) {
-            readStatus.textContent = 'Read'
-            readStatus.style.backgroundColor = '#63da63'
+            readStatus.textContent = 'Read';
+            readStatus.style.backgroundColor = '#63da63';
           } else {
-            readStatus.textContent = 'Not Read'
+            readStatus.textContent = 'Not Read';
             readStatus.style.backgroundColor = '#e04f63';
           }
     })
     buttonContainer.appendChild(readStatus);
 
     removeBook.textContent = "Remove Book";
-    removeBook.classList.add('removeBtn')
-    removeBook.addEventListener('click', deleteBook)
+    removeBook.classList.add('removeBtn');
+    removeBook.addEventListener('click', () => {
+        myLibrary.splice(myLibrary.indexOf(book),1);
+        updateDisplay()
+    });
     buttonContainer.appendChild(removeBook);
 
     bookCard.appendChild(infoContainer);
@@ -82,7 +85,16 @@ function createBookCard(book) {
     container.appendChild(bookCard);
 }
 
-myLibrary.forEach(book => createBookCard(book));
+function updateDisplay() {
+    const container = document.querySelector('#container');
+    const books = document.querySelectorAll('.bookCard');
+    books.forEach(book => container.removeChild(book));
+    for (let i=0; i<myLibrary.length; i++){
+        createBookCard(myLibrary[i]);
+    }
+}
+
+updateDisplay();
 
 
 function closeWindow (e) {
@@ -106,6 +118,7 @@ const closeForm = document.getElementById('close');
 closeForm.addEventListener('click', closeWindow)
 
 function deleteBook(e) {
-
+    myLibrary.splice(myLibrary.indexOf(item),1);
+    updateDisplay();
 }
 

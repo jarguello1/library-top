@@ -9,7 +9,7 @@ function Book(title, author, pages, readStatus) {
 
 const animalFarm = new Book('Animal Farm', 'George Orwell', 112, false);
 const eotw = new Book('Eye of the World', 'Robert Jordan', 782, false);
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, false);
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, true);
 
 myLibrary.push(animalFarm);
 myLibrary.push(eotw);
@@ -47,16 +47,17 @@ function createBookCard(book) {
     infoContainer.appendChild(pages);
 
     
-    if (book.isRead) {
+    if (book.readStatus) {
         readStatus.textContent = 'Read';
         readStatus.style.backgroundColor = '#63da63';
       } else {
         readStatus.textContent = 'Not Read';
         readStatus.style.backgroundColor = '#e04f63';
       }
+
     readStatus.addEventListener('click', () => {
-        book.isRead = !book.isRead;
-        if (book.isRead) {
+        book.readStatus = !book.readStatus;
+        if (book.readStatus) {
             readStatus.textContent = 'Read';
             readStatus.style.backgroundColor = '#63da63';
           } else {
@@ -121,7 +122,6 @@ function submitForm(that) {
     event.preventDefault();
     let newBook = new Book(that.bookTitle.value, that.bookAuthor.value, that.bookPages.value, that.isRead.checked);
     myLibrary.push(newBook);
-    console.log(myLibrary);
     bookInput.reset();
     updateDisplay();
     closeWindow();

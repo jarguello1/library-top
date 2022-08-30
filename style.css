@@ -3,11 +3,16 @@
 body {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin: 0px;
     padding: 0px;
     background-color: rgb(241, 235, 227);
     align-items: center;
+    gap: 25px;
+
+}
+
+header>h1{
+    margin-bottom: 0px;
 }
 
 #container {
@@ -24,6 +29,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
 }
 
 #modal {

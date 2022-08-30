@@ -7,9 +7,9 @@ function Book(title, author, pages, readStatus) {
         this.readStatus = readStatus;
 }
 
-const animalFarm = new Book('Animal Farm', 'George Orwell', 112, false);
-const eotw = new Book('Eye of the World', 'Robert Jordan', 782, false);
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, true);
+const animalFarm = new Book('Animal Farm', 'George Orwell', 112, true);
+const eotw = new Book('Eye of the World', 'Robert Jordan', 782, true);
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, false);
 
 myLibrary.push(animalFarm);
 myLibrary.push(eotw);

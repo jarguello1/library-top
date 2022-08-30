@@ -16,7 +16,7 @@
     <div id="container">
     </div>
     <div id="modal">
-        <form action="post" id="bookInput">
+        <form onsubmit={submitForm(this)} id="bookInput">
         <div class="formHeader">
             <p>Add Book</p>
             <p><span id="close">&times;</span></p>
@@ -26,7 +26,7 @@
         <input type="number" name="bookPages" id="bookPages" placeholder="pages">
 
         <label for="isRead">Have you read it?</label>
-        <input type="radio" name="isRead" id="isRead">
+        <input type='checkbox' id='isRead' name='isRead' value='yes'></p>
 
         <button type="submit" form="bookInput" id="submitBook">Add</button>
     </form>

@@ -7,18 +7,13 @@ function Book(title, author, pages, readStatus) {
         this.readStatus = readStatus;
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
-}
-
-
 const animalFarm = new Book('Animal Farm', 'George Orwell', 112, false);
 const eotw = new Book('Eye of the World', 'Robert Jordan', 782, false);
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, false);
 
-addBookToLibrary(animalFarm);
-addBookToLibrary(eotw);
-addBookToLibrary(theHobbit);
+myLibrary.push(animalFarm);
+myLibrary.push(eotw);
+myLibrary.push(theHobbit);
 
 console.log(myLibrary);
 
@@ -97,7 +92,7 @@ function updateDisplay() {
 updateDisplay();
 
 
-function closeWindow (e) {
+function closeWindow () {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
     const bookForm = document.getElementById('bookInput');
@@ -122,3 +117,13 @@ function deleteBook(e) {
     updateDisplay();
 }
 
+function submitForm(that) {
+    event.preventDefault();
+    let newBook = new Book(that.bookTitle.value, that.bookAuthor.value, that.bookPages.value, that.isRead.checked);
+    myLibrary.push(newBook);
+    console.log(myLibrary);
+    bookInput.reset();
+    updateDisplay();
+    closeWindow();
+    return false;
+}

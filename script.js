@@ -14,12 +14,12 @@ const animalFarm = new Book('Animal Farm', 'George Orwell', 112, true);
 const eotw = new Book('Eye of the World', 'Robert Jordan', 782, true);
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, false);
 
+// Add Example books to list
 myLibrary.push(animalFarm);
 myLibrary.push(eotw);
 myLibrary.push(theHobbit);
 
-console.log(myLibrary);
-
+// Function to create html div for each book
 function createBookCard(book) {
     const container = document.querySelector('#container');
     const bookCard = document.createElement('div');
@@ -87,6 +87,7 @@ function createBookCard(book) {
     container.appendChild(bookCard);
 }
 
+// Updates the display to include all books everytime one is added or removed
 function updateDisplay() {
     const container = document.querySelector('#container');
     const books = document.querySelectorAll('.bookCard');
@@ -96,16 +97,14 @@ function updateDisplay() {
     }
 }
 
-updateDisplay();
-
-
+//Function to close add book pop up form
 function closeWindow () {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
     const bookForm = document.getElementById('bookInput');
     bookForm.style.display = 'none';
 }
-
+// Open book pop up form
 function openWindow () {
     const modal = document.getElementById('modal');
     modal.style.display = 'block';
@@ -113,17 +112,20 @@ function openWindow () {
     bookForm.style.display = 'block';
 }
 
+// Add functions to buttons
 const addBook = document.getElementById('addBook');
 addBook.addEventListener('click', openWindow);
 
 const closeForm = document.getElementById('close');
 closeForm.addEventListener('click', closeWindow)
 
+//removes book from list, updates display
 function deleteBook(e) {
     myLibrary.splice(myLibrary.indexOf(item),1);
     updateDisplay();
 }
 
+// Uses HTML form to get information for the new book object, adds it to list and updates the page. 
 function submitForm(that) {
     event.preventDefault();
     let newBook = new Book(that.bookTitle.value, that.bookAuthor.value, that.bookPages.value, that.isRead.checked);
@@ -135,10 +137,12 @@ function submitForm(that) {
     return false;
 }
 
+//store data in local storage
 function storeData() {
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
 }
 
+//restores data for initial page load
 function restoreData() {
     if(!localStorage.myLibrary) {
         updateDisplay();
@@ -150,4 +154,5 @@ function restoreData() {
     }
 }
 
+// Intialize Page
 restoreData();

@@ -1,5 +1,7 @@
+// Array for books
 let myLibrary = [];
 
+//Book Object
 function Book(title, author, pages, readStatus) {
         this.title = title;
         this.author = author;
@@ -7,6 +9,7 @@ function Book(title, author, pages, readStatus) {
         this.readStatus = readStatus;
 }
 
+// Example Books
 const animalFarm = new Book('Animal Farm', 'George Orwell', 112, true);
 const eotw = new Book('Eye of the World', 'Robert Jordan', 782, true);
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 310, false);
@@ -60,9 +63,11 @@ function createBookCard(book) {
         if (book.readStatus) {
             readStatus.textContent = 'Read';
             readStatus.style.backgroundColor = '#63da63';
+            storeData();
           } else {
             readStatus.textContent = 'Not Read';
             readStatus.style.backgroundColor = '#e04f63';
+            storeData();
           }
     })
     buttonContainer.appendChild(readStatus);
@@ -71,7 +76,8 @@ function createBookCard(book) {
     removeBook.classList.add('removeBtn');
     removeBook.addEventListener('click', () => {
         myLibrary.splice(myLibrary.indexOf(book),1);
-        updateDisplay()
+        updateDisplay();
+        storeData();
     });
     buttonContainer.appendChild(removeBook);
 
@@ -123,7 +129,25 @@ function submitForm(that) {
     let newBook = new Book(that.bookTitle.value, that.bookAuthor.value, that.bookPages.value, that.isRead.checked);
     myLibrary.push(newBook);
     bookInput.reset();
+    storeData();
     updateDisplay();
     closeWindow();
     return false;
 }
+
+function storeData() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+}
+
+function restoreData() {
+    if(!localStorage.myLibrary) {
+        updateDisplay();
+    } else {
+        let objects = localStorage.getItem('myLibrary');
+        objects = JSON.parse(objects);
+        myLibrary = objects;
+        updateDisplay();
+    }
+}
+
+restoreData();

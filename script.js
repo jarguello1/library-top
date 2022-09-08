@@ -3,10 +3,10 @@ let myLibrary = [];
 
 //Book Object
 function Book(title, author, pages, readStatus) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.readStatus = readStatus;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
 }
 
 // Example Books
@@ -24,7 +24,7 @@ function createBookCard(book) {
     const container = document.querySelector('#container');
     const bookCard = document.createElement('div');
     const title = document.createElement('p');
-    const author = document.createElement('p')
+    const author = document.createElement('p');
     const pages = document.createElement('p');
     const readStatus = document.createElement('button');
     const removeBook = document.createElement('button');
@@ -49,14 +49,13 @@ function createBookCard(book) {
     pages.classList.add('Pages');
     infoContainer.appendChild(pages);
 
-    
     if (book.readStatus) {
         readStatus.textContent = 'Read';
         readStatus.style.backgroundColor = '#63da63';
-      } else {
+    } else {
         readStatus.textContent = 'Not Read';
         readStatus.style.backgroundColor = '#e04f63';
-      }
+    }
 
     readStatus.addEventListener('click', () => {
         book.readStatus = !book.readStatus;
@@ -64,18 +63,18 @@ function createBookCard(book) {
             readStatus.textContent = 'Read';
             readStatus.style.backgroundColor = '#63da63';
             storeData();
-          } else {
+        } else {
             readStatus.textContent = 'Not Read';
             readStatus.style.backgroundColor = '#e04f63';
             storeData();
-          }
-    })
+        }
+    });
     buttonContainer.appendChild(readStatus);
 
-    removeBook.textContent = "Remove Book";
+    removeBook.textContent = 'Remove Book';
     removeBook.classList.add('removeBtn');
     removeBook.addEventListener('click', () => {
-        myLibrary.splice(myLibrary.indexOf(book),1);
+        myLibrary.splice(myLibrary.indexOf(book), 1);
         updateDisplay();
         storeData();
     });
@@ -91,21 +90,21 @@ function createBookCard(book) {
 function updateDisplay() {
     const container = document.querySelector('#container');
     const books = document.querySelectorAll('.bookCard');
-    books.forEach(book => container.removeChild(book));
-    for (let i=0; i<myLibrary.length; i++){
+    books.forEach((book) => container.removeChild(book));
+    for (let i = 0; i < myLibrary.length; i++) {
         createBookCard(myLibrary[i]);
     }
 }
 
 //Function to close add book pop up form
-function closeWindow () {
+function closeWindow() {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
     const bookForm = document.getElementById('bookInput');
     bookForm.style.display = 'none';
 }
 // Open book pop up form
-function openWindow () {
+function openWindow() {
     const modal = document.getElementById('modal');
     modal.style.display = 'block';
     const bookForm = document.getElementById('bookInput');
@@ -117,12 +116,17 @@ const addBook = document.getElementById('addBook');
 addBook.addEventListener('click', openWindow);
 
 const closeForm = document.getElementById('close');
-closeForm.addEventListener('click', closeWindow)
+closeForm.addEventListener('click', closeWindow);
 
-// Uses HTML form to get information for the new book object, adds it to list and updates the page. 
+// Uses HTML form to get information for the new book object, adds it to list and updates the page.
 function submitForm(that) {
     event.preventDefault();
-    let newBook = new Book(that.bookTitle.value, that.bookAuthor.value, that.bookPages.value, that.isRead.checked);
+    let newBook = new Book(
+        that.bookTitle.value,
+        that.bookAuthor.value,
+        that.bookPages.value,
+        that.isRead.checked
+    );
     myLibrary.push(newBook);
     bookInput.reset();
     storeData();
@@ -133,12 +137,12 @@ function submitForm(that) {
 
 //store data in local storage
 function storeData() {
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 //restores data for initial page load
 function restoreData() {
-    if(!localStorage.myLibrary) {
+    if (!localStorage.myLibrary) {
         updateDisplay();
     } else {
         let objects = localStorage.getItem('myLibrary');

@@ -119,12 +119,6 @@ addBook.addEventListener('click', openWindow);
 const closeForm = document.getElementById('close');
 closeForm.addEventListener('click', closeWindow)
 
-//removes book from list, updates display
-function deleteBook(e) {
-    myLibrary.splice(myLibrary.indexOf(item),1);
-    updateDisplay();
-}
-
 // Uses HTML form to get information for the new book object, adds it to list and updates the page. 
 function submitForm(that) {
     event.preventDefault();
